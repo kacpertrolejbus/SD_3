@@ -1,6 +1,9 @@
 #ifndef HASHFUNC_HPP
 #define HASHFUNC_HPP
 
+#include <cmath>
+#include <string>
+
 class HashFunctions
 {
 private:
