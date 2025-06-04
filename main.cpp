@@ -64,8 +64,7 @@ void demo() {
 void demoHF() {
     cout << "\n" << string(50, '=') << endl;
     cout << "DEMONSTRACJA RÓŻNYCH FUNKCJI HASZUJĄCYCH" << endl;
-    string(50, '=');
-    cout << endl;
+    cout << string(50, '=') << endl;
 
     vector<int> testKeys = { 123, 456, 789, 1011, 1213 };
     int tableSize = 13;
@@ -110,25 +109,28 @@ void demoHF() {
 }
 
 void showMenu() {
-    cout << "\n" << string(40, '=') << endl;
-    cout << "MENU PROGRAMU" << endl;
-    cout << string(40, '=') << endl;
+    cout << "\n" << string(50, '=') << endl;
+    cout << "MENU PROGRAMU - TABLICE HASZUJĄCE" << endl;
+    cout << string(50, '=') << endl;
     cout << "1. Demonstracja podstawowych operacji" << endl;
     cout << "2. Porównanie funkcji haszujących" << endl;
-    cout << "3. Test wydajności - wszystkie przypadki" << endl;
-    cout << "4. Test wydajności - przypadek optymistyczny" << endl;
-    cout << "5. Test wydajności - przypadek średni" << endl;
-    cout << "6. Test wydajności - przypadek pesymistyczny" << endl;
-    cout << "7. Porównanie szybkie funkcji haszujących" << endl;
+    cout << "3. Test wydajności - wszystkie przypadki (zapis do pliku)" << endl;
+    cout << "4. Test przypadku optymistycznego" << endl;
+    cout << "5. Test przypadku średniego" << endl;
+    cout << "6. Test przypadku pesymistycznego" << endl;
+    cout << "7. Porównanie funkcji haszujących (jeden rozmiar)" << endl;
+    cout << "8. Test wielorozmiarowy (zapis do pliku)" << endl;
+    cout << "9. Porównanie funkcji na różnych rozmiarach (zapis do pliku)" << endl;
     cout << "0. Wyjście" << endl;
-    cout << string(40, '=') << endl;
+    cout << string(50, '=') << endl;
     cout << "Wybierz opcję: ";
 }
 
 int main() {
     cout << "PROJEKT 3 - TABLICE HASZUJĄCE" << endl;
     cout << "Implementacja i porównanie funkcji haszujących" << endl;
-    cout << "Autor: [Twoje imię i nazwisko]" << endl;
+    cout << "z zapisem wyników do pliku" << endl;
+    cout << "Rozmiary tablicy: 101, 503, 1009, 2003, 5003" << endl;
 
     PerfoTest tester;
     int choice;
@@ -148,7 +150,8 @@ int main() {
 
         case 3:
             cout << "\nUruchamianie kompleksowego testu wydajności..." << endl;
-            tester.runCompleteTest(1009, 500);
+            cout << "Wyniki będą zapisane do pliku 'wyniki_testow.txt'" << endl;
+            tester.runCompleteTest(500);
             break;
 
         case 4: {
@@ -174,7 +177,19 @@ int main() {
 
         case 7:
             cout << "\nSzybkie porównanie funkcji haszujących..." << endl;
-            tester.compareHF(1009, 500);
+            tester.compareHF(500);
+            break;
+
+        case 8:
+            cout << "\nTest wielorozmiarowy..." << endl;
+            cout << "Wyniki będą zapisane do pliku 'test_wielorozmiarowy.txt'" << endl;
+            tester.runMultiSizeTest(500);
+            break;
+
+        case 9:
+            cout << "\nPorównanie funkcji na różnych rozmiarach..." << endl;
+            cout << "Wyniki będą zapisane do pliku 'porownanie_funkcji.txt'" << endl;
+            tester.compareHFMultiSize(500);
             break;
 
         case 0:

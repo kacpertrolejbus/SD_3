@@ -30,13 +30,14 @@ int HashFunctions::nearestPrime(int tableSize)
 
  int HashFunctions::counter(int keyN)
 {
-	int count = 0;
-	while (keyN != 0)
-	{
-		count++;
-		keyN /= 10;
-	}
-	return count;
+	 if (keyN == 0) return 1;
+	 int count = 0;
+	 keyN = abs(keyN);
+	 while (keyN != 0) {
+		 count++;
+		 keyN /= 10;
+	 }
+	 return count;
 }
 
  int HashFunctions::divisionMethod(int key, int tableSize)
@@ -46,14 +47,17 @@ int HashFunctions::nearestPrime(int tableSize)
 
  int HashFunctions::midSquareMethod(int key, int tableSize)
 {
-	long long keyN = (long long)key;
-	int tableDS = HashFunctions::counter(tableSize - 1);
-	int counterKey = counter(keyN);
-	int e = (2 * counterKey - tableDS) / 2;
-	int r = pow(10, e);
-	keyN = (keyN * keyN) / r;
-	int mod = pow(10, tableDS);
-	return (keyN) % mod;
+	 long long keySquared = (long long)abs(key) * abs(key);
+	 string squared = to_string(keySquared);
+	 int totalDigits = squared.length();
+	 int digitsNeeded = counter(tableSize - 1);
+	 if (totalDigits <= digitsNeeded) {
+		 return keySquared % tableSize;
+	 }
+	 int startPos = (totalDigits - digitsNeeded) / 2;
+	 string middlePart = squared.substr(startPos, digitsNeeded);
+	 int result = stoi(middlePart);
+	 return result % tableSize;
 }
 
  int HashFunctions::multiplicationMethod(int key, int tableSize) {
