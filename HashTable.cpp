@@ -82,7 +82,7 @@ pair<bool, int> HashTable::insert(int key, int val)
 				count++;
 			}
 			table[index].key = key;
-			table[index].key = val;
+			table[index].val = val;
 			return { true, steps };
 		}
 		if (table[index].key == key && !table[index].del)
